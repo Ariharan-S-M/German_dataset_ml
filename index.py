@@ -1,12 +1,22 @@
 import streamlit as st
-from htbuilder import HtmlElement, div, ul, li, br, hr, a, p, img, styles, classes, fonts
-from htbuilder.units import percent, px
-from htbuilder.funcs import rgba, rgb
+from streamlit.components.v1 import html
 
-def display_html_report():
-    # Paste your entire HTML code here as a multi-line string
-    html_content = """
-    <!DOCTYPE html>
+# CSS and JavaScript from your original HTML
+css = """
+<style>
+/* Paste all your CSS here */
+</style>
+"""
+
+js = """
+<script>
+// Paste any JavaScript here
+</script>
+"""
+
+# HTML content
+html_content = """
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -820,10 +830,25 @@ def display_html_report():
 
 </body>
 </html>
-    """
-    
-    st.components.v1.html(html_content, height=2000, scrolling=True)
+"""
 
-# Main Streamlit app
-st.set_page_config(layout="wide", page_title="Credit Card ML Evaluation")
-display_html_report()
+# Streamlit app
+def main():
+    st.set_page_config(layout="wide")
+    
+    # Inject CSS
+    st.markdown(css, unsafe_allow_html=True)
+    
+    # Display HTML
+    html(html_content, width=None, height=2000, scrolling=True)
+    
+    # Add interactive Streamlit elements
+    with st.sidebar:
+        st.header("Model Controls")
+        selected_model = st.selectbox("Select Model", ["XGBoost", "Random Forest", "CNN"])
+        
+        if st.button("Run Analysis"):
+            st.success(f"Running {selected_model} analysis...")
+
+if __name__ == "__main__":
+    main()
