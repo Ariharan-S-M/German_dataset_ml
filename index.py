@@ -713,7 +713,7 @@ html_content = """
         <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
             <h5>Feature Importance Analysis</h5>
             <div class="img-container">
-                <img src="feature_importance.png" alt="Feature importance" class="img-fluid">
+                <img src="https://github.com/Ariharan-S-M/German_dataset_ml/blob/master/feature_importance.png" alt="Feature importance" class="img-fluid">
             </div>
         </div>
         
